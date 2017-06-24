@@ -400,11 +400,14 @@ slave3
 
 ##——————————————————————Step—Supplementary-—————————————##
 ## 
-[myname@master]$ 
+[myname@master]$ sudo ~/hadoopSetupScripts/enviornmentVariables.sh
+[myname@slave1]$ sudo ~/hadoopSetupScripts/enviornmentVariables.sh
+[myname@slave2]$ sudo ~/hadoopSetupScripts/enviornmentVariables.sh
+[myname@slave3]$ sudo ~/hadoopSetupScripts/enviornmentVariables.sh
 #
 ##
 ### The contents of the enviornmentVariables.sh ###
-sudo sh -c "echo 'export HADOOP_HOME=/home/duanqq/softwares/hadoop' >> /etc/profile"
+sudo sh -c "echo 'export HADOOP_HOME=/home/myname/softwares/hadoop' >> /etc/profile"
 sudo sh -c "echo 'export PATH=${HADOOP_HOME}/bin:${PATH}' >> /etc/profle"
 ### The contents of the enviornmentVariables.sh ###
 ##
@@ -415,4 +418,5 @@ sudo sh -c "echo 'export PATH=${HADOOP_HOME}/bin:${PATH}' >> /etc/profle"
 
 ##--- Delete a user
 [myname@master]# userdel myname
+
 ##——————————————————————Step—Supplementary-—————————————##
