@@ -1,0 +1,407 @@
+######################################################################
+#####
+## Cluster Setup to set up a multi-node Hadoop installation on Centos 7 / Ubuntu
+#####
+## Step-01
+## Step-02
+## Step-03
+## Step-04
+## Step-05
+## Step-06
+## Step-Supplementary
+#####
+######################################################################
+
+
+
+##——————————————————————Step—01—————————————————————————##
+####################
+## Set up the server cluster from a remote pc without any considerations of firewalls.
+
+[myname@local]$ vi ~/hadoopSetupScripts/preHostRelated.sh
+[myname@local]$ sudo ~/hadoopSetupScripts/preHostRelated.sh
+
+#
+###
+##### The contents of preHostRelated.sh Start ####################
+
+####################
+## Append the file /etc/hosts with the following contents:
+
+sudo sh -c "echo '10.10.10.01       master' >> /etc/hosts"
+sudo sh -c "echo '10.10.10.02       slave1' >> /etc/hosts"
+sudo sh -c "echo '10.10.10.03       slave2' >> /etc/hosts"
+sudo sh -c "echo '10.10.10.04       slave3' >> /etc/hosts"
+
+
+####################
+## Apped it the following contents to ~/.bashrc
+
+sudo sh -c "echo 'alias sshmaster=\"ssh myname@master\ -p 22"' >> ~/.bashrc"
+sudo sh -c "echo 'alias sshslave1=\"ssh myname@slave1\ -p 22"' >> ~/.bashrc"
+sudo sh -c "echo 'alias sshslave2=\"ssh myname@slave2\ -p 22"' >> ~/.bashrc"
+sudo sh -c "echo 'alias sshslave3=\"ssh myname@slave3\ -p 22"' >> ~/.bashrc"
+
+souce ~/.bashrc
+
+##### The contents of preHostRelated.sh End ####################
+###
+#
+##——————————————————————Step—01—————————————————————————##
+
+
+##——————————————————————Step—02—————————————————————————##
+####################
+## Open four terminals and remote login in the server cluster:
+
+# Terminal 1
+[myname@local]$ sshmaster
+# Then obtain
+[myname@master]$ sudo vi /etc/hostname
+# Change the contents of it to master
+[myname@master]$ reboot
+
+# Termianl 2
+[myname@local]$ sshslave1
+# Then obtain
+[myname@slave1]$ sudo vi /etc/hostname
+# Change the contents of it to slave1
+[myname@slave1]$ reboot
+
+# Termianl 3
+[myname@local]$ sshslave2
+# Then obtain
+[myname@slave2]$ sudo vi /etc/hostname
+# Change the contents of it to slave2
+[myname@slave2]$ reboot
+
+# Termianl 4
+[myname@local]$ sshslave3
+# Then obtain
+[myname@slave3]$ sudo vi /etc/hostname
+# Change the contents of it to slave3
+[myname@slave3]$ reboot
+
+##——————————————————————Step—02—————————————————————————##
+
+
+##——————————————————————Step—03—————————————————————————##
+####################
+
+[myname@local]$ vi ~/hadoopSetupScripts/preSetup.sh
+[myname@local]$ chmod 777 ~/preHostRelated.sh
+[myname@local]$ scp -r ~/hadoopSetupScripts myname@master:/home/myname/
+[myname@local]$ scp -r ~/hadoopSetupScripts myname@slave1:/home/myname/
+[myname@local]$ scp -r ~/hadoopSetupScripts myname@slave1:/home/myname/
+[myname@local]$ scp -r ~/hadoopSetupScripts myname@slave1:/home/myname/
+#
+[myname@master]$ sudo ~/hadoopSetupScripts/preSetup.sh
+[myname@slave1]$ sudo ~/hadoopSetupScripts/preSetup.sh
+[myname@slave2]$ sudo ~/hadoopSetupScripts/preSetup.sh
+[myname@slave3]$ sudo ~/hadoopSetupScripts/preSetup.sh
+
+
+#
+###
+##### The contents of preSetup.sh Start ####################
+
+####################
+## Install the complete vim on the Linux system:
+# 1 For Ubuntu:
+#sudo apt-get intall vim
+
+# 2 For Centos 7:
+sudo yum install vim
+
+sudo ./preHostRelated.sh
+
+##### The contents of preSetup.sh End ####################
+###
+#
+##——————————————————————Step—03—————————————————————————##
+
+
+
+##——————————————————————Step—04—————————————————————————##
+####################
+## Setup password free ssh
+
+[myname@master]$ cd
+[myname@master]$ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+[myname@master]$ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+
+
+[myname@slave1]$ cd
+[myname@slave1]$ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+
+## Copy the contents of the file ~/.ssh/id_rsa.pub and append them to ~/.ssh/authorized_keys of the master.
+
+
+[myname@slave2]$ cd
+[myname@slave2]$ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+
+## Copy the contents of the file ~/.ssh/id_rsa.pub and append them to ~/.ssh/authorized_keys of the master.
+
+
+[myname@slave3]$ cd
+[myname@slave3]$ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+
+## Copy the contents of the file ~/.ssh/id_rsa.pub and append them to ~/.ssh/authorized_keys of the master.
+
+
+[myname@master]$ chmod 600 ~/.ssh/authorized_keys
+[myname@master]$ scp ~/.ssh/authorized_keys myname@slave1:/home/myname/.ssh/authorized_keys
+[myname@master]$ scp ~/.ssh/authorized_keys myname@slave2:/home/myname/.ssh/authorized_keys
+[myname@master]$ scp ~/.ssh/authorized_keys myname@slave3:/home/myname/.ssh/authorized_keys
+
+##——————————————————————Step—04—————————————————————————##
+
+
+##——————————————————————Step—05—————————————————————————##
+####################
+## Config the onfiguration files
+#
+[myname@master]$ mkdir ~/softwares/
+[myname@master]$ wget http://apache.fayea.com/hadoop/common/hadoop-2.8.0/hadoop-2.8.0.tar.gz
+# Assume that the java is installed and the environment varialbe $JAVA_HOME is set up properly.
+# export JAVA_HOME=/usr/java/jdk1.8.0_131
+[myname@master]$ tar -zvxf hadoop-2.8.0.tar.gz
+[myname@master]$ mv hadoop-2.8.0 ~/softwares/hadoop
+# Create the directories necessary next.
+[myname@master]$ mkdir -p ~/softwares/hadoop/hdfs/name
+[myname@master]$ mkdir -p ~/softwares/hadoop/hdfs/data
+[myname@master]$ mkdir -p ~/softwares/hadoop/hdfs/namesecondary
+#
+[myname@master]$ vi ~/softwares/hadoop/etc/hadoop/hadoop-env.sh
+# Modify 
+# export JAVA_HOME=${JAVA_HOME}
+# To
+# export JAVA_HOME=/usr/java/jdk1.8.0_131
+#
+[myname@master]$ vi ~/softwares/hadoop/etc/hadoop/yarn-env.sh
+# Modify 
+# export JAVA_HOME=/home/y/libexec/jdk1.6.0/
+# To
+# export JAVA_HOME=/usr/java/jdk1.8.0_131
+#
+[myname@master]$ vi ~/softwares/hadoop/etc/hadoop/mapred-env.sh
+# Modify 
+# export JAVA_HOME=/home/y/libexec/jdk1.6.0/
+# To
+# export JAVA_HOME=/usr/java/jdk1.8.0_131
+#
+[myname@master]$ vi ~/softwares/hadoop/etc/hadoop/slaves
+#
+##
+### The contents of slaves ###
+slave1
+slave2
+slave3
+### The contents of slaves ###
+##
+#
+[myname@master]$ vi ~/softwares/hadoop/etc/hadoop/core-site.xml
+## Modify
+<configuration>
+</configuration>
+## To
+#
+##
+###
+<configuration>
+<property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://master:9000/</value>
+    <description>namenode settings</description>
+</property>
+<property>
+    <name>hadoop.tmp.dir</name>
+    <value>/home/myname/tmp/hadoop-${user.name}</value>
+    <description> temp folder </description>
+</property>  
+<property>
+    <name>hadoop.proxyuser.myname.hosts</name>
+    <value>*</value>
+</property>
+<property>
+    <name>hadoop.proxyuser.myname.groups</name>
+    <value>*</value>
+</property>
+</configuration>
+###
+##
+#
+## !!! Note that the master must not have the underscore “_” character in it but can have hyphen “-”. Or it won’t be recognized by hadoop and get nothing when we run the command “bin/hdfs getconf -namenodes” and result the error “Incorrect configuration: namenode address dfs.namenode.servicerpc-address or dfs.namenode.rpc-address is not configured.”!!!
+
+[myname@master]$ vi ~/softwares/hadoop/etc/hadoop/hdfs-site.xml
+#
+##
+###
+<configuration>
+    <property>
+        <name>dfs.replication</name>
+        <!-- 单机版的一般设为1，若是集群，一般设为3 -->
+        <value>3</value>
+    </property>
+
+<!--
+    Note that the storage directories for HDFS are under Hadoop's temporary directory by default 
+    (this is configured via the hadoop.tmp.dir property, whose default is /tmp/hadoop-${user.name}).
+    Therefore, it is critical that these properties are set so that data is not lost by the system
+    when it clears out temporary directories.
+-->
+
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>file:///home/myname/softwares/hadoop/hdfs/name</value>
+        <!--Comma-seperated directory names-->
+        <!--The list of directories where the namenode stores its persistence metadata(the edit log and the filesystem image)-->
+        <!--The namenode stores a copy of the metadata in each directory in the list.-->
+    </property>
+
+    <property>
+        <name>dfs.datanode.data.dir</name>
+        <value>file:///home/myname/softwares/hadoop/hdfs/data</value>
+        <!--Comma-seperated directory names-->
+        <!--A list of directories where the datanode stores blocks.-->
+        <!--Each block is stored in only one of these directories.-->
+    </property>
+
+    <property>
+        <name>dfs.namenode.checkpoint.dir</name>
+        <value>file:///home/myname/softwares/hadoop/hdfs/namesecondary</value>
+        <!--Comma-seperated directory names-->
+        <!--A list of directories where the secondary namenode stores checkpoints of the filesystem.-->
+        <!--It sotres a copy of the checkpoint in each diretory in the list.-->
+    </property>
+
+    <property>
+        <name>dfs.webhdfs.enabled</name>
+        <value>true</value>
+    </property>
+
+</configuration>
+###
+##
+#
+
+[myname@master]$ cp ~/softwares/hadoop/etc/hadoop/mapred-site.xml.template ~/softwares/hadoop/etc/hadoop/mapred-site.xml
+[myname@master]$ vi ~/softwares/hadoop/etc/hadoop/mapred-site.xml
+#
+##
+###
+<configuration>
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+    <property>
+        <name>mapreduce.jobtracker.address</name>
+        <value>hdfs://master:9001</value>
+    </property>
+    <property>
+        <name>mapreduce.jobhistory.address</name>
+        <value>master:10020</value>
+        <description>MapReduce JobHistory Server host:port, default port is 10020.</description>
+    </property>
+    <property>
+        <name>mapreduce.jobhistory.webapp.address</name>
+        <value>master:19888</value>
+        <description>MapReduce JobHistory Server Web UI host:port, default port is 19888.</description>
+    </property>
+</configuration>
+###
+##
+#
+[myname@master]$ vi ~/softwares/hadoop/etc/hadoop/yarn-site.xml
+#
+##
+###
+<configuration>
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>master</value>
+    </property>
+
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+
+    <property>
+        <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+        <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+    </property>
+
+    <property>
+        <name>yarn.resourcemanager.address</name>
+        <value>master:8032</value>
+    </property>
+
+    <property>
+        <name>yarn.resourcemanager.scheduler.address</name>
+        <value>master:8030</value>
+    </property>
+
+    <property>
+        <name>yarn.resourcemanager.resource-tracker.address</name>
+        <value>master:8031</value>
+    </property>
+
+    <property>
+        <name>yarn.resourcemanager.admin.address</name>
+        <value>master:8033</value>
+    </property>
+
+    <property>
+        <name>yarn.resourcemanager.webapp.address</name>
+        <value>master:8088</value>
+    </property>
+</configuration>
+###
+##
+#
+
+## Replicate hadoop to each worker node
+[myname@master]$ scp -r ~/softwares/hadoop slave1:/home/myname/softwares
+[myname@master]$ scp -r ~/softwares/hadoop slave2:/home/myname/softwares
+[myname@master]$ scp -r ~/softwares/hadoop slave3:/home/myname/softwares
+##——————————————————————Step—05—————————————————————————##
+
+
+##——————————————————————Step—06—————————————————————————##
+####################
+## Format the filesystem:
+[myname@master]$ ~/softwares/hadoop/bin/hdfs namenode -format
+## Verify
+[myname@master]$ ~/softwares/hadoop/bin/hdfs getconf -namenodes
+## Start NameNode daemon and DataNode daemon:
+[myname@master]$ ~/softwares/hadoop/sbin/start-dfs.sh
+[myname@master]$ ~/softwares/hadoop/sbin/start-yarn.sh
+# Or
+[myname@master]$ ~/softwares/hadoop/sbin/start-all.sh
+## Verify
+[myname@master]$ jps
+#
+##
+10295 Jps
+10008 ResourceManager
+9486 SecondaryNameNode
+9199 NameNode
+##
+#
+## Stop hadoop
+[myname@master]$ sbin/stop-dfs.sh
+[myname@master]$ sbin/stop-yarn.sh
+# Or
+[myname@master]$ sbin/stop-all.sh
+##——————————————————————Step—06—————————————————————————##
+
+
+##——————————————————————Step—Supplementary-—————————————##
+##--- Create a user
+[myname@master]# adduser myname
+
+##--- Delete a user
+[myname@master]# userdel myname
+##——————————————————————Step—Supplementary-—————————————##
