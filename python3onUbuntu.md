@@ -24,8 +24,8 @@
 
    >$sudo apt-get install libsqlite3-dev
    
-   Note: Without libsqlite3-dev installed, you may get the following error when you run "jupyter noteboke" in your terminal once you have "python3 -m pip install jupyter".
-  
+   Note: Without libsqlite3-dev installed, you may get the following error when you run "jupyter noteboke" in your terminal once you have "python3 -m pip install jupyter". 
+   
    Error: from pysqlite2 import dbapi2 as sqlite3 ModuleNotFoundError: No module named 'pysqlite2'
 
 
