@@ -5,24 +5,24 @@
 
 2. Decompress the package:
 
-   >$tar -xvf Python-3.6.4.tar.xz
+   >$ tar -xvf Python-3.6.4.tar.xz
  
  
 3. Install some necessary packages, or you may encouter errors at the following steps:
 
-   >$sudo apt-get install zlib*
+   >$ sudo apt-get install zlib*
    
    Note: Without zlib* installed, you may get the following error when you "make" or "make install" in subsequent steps:
    
    Error: zipimport.ZipImportError: can’t decompress data; zlib not available 
    
-   >$sudo apt-get install libssl-dev
+   >$ sudo apt-get install libssl-dev
    
    Note: Without libssl-dev installed, you may get the following error when you use pip3, for example, pip3 install numpy.
    
    Error: pip is configured with locations that require TLS/SSL, however the ssl module in Python is not available.
 
-   >$sudo apt-get install libsqlite3-dev
+   >$ sudo apt-get install libsqlite3-dev
    
    Note: Without libsqlite3-dev installed, you may get the following error when you run "jupyter noteboke" in your terminal once you have "python3 -m pip install jupyter". 
    
@@ -31,21 +31,21 @@
 
 4. Configure, make and install:
    
-   >$cd Python-3.6.4/
+   >$ cd Python-3.6.4/
    
-   >$./configure
+   >$ ./configure
    
-   >$./configure --enable-optimizations
+   >$ ./configure --enable-optimizations
    
-   >$make
+   >$ make
    
-   >$sudo make install
+   >$ sudo make install
    
    
 5. Testify your installation:
 
-   >$python3 --version
+   >$ python3 --version
    
-   >$sudo pip3 install numpy
+   >$ sudo pip3 install numpy
    
    
