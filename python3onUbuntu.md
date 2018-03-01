@@ -12,13 +12,21 @@
 
    >$sudo apt-get install zlib*
    
-   Note: Without zlib* installed, you will get the following error when you "make" or "make install" in subsequent steps:
+   Note: Without zlib* installed, you may get the following error when you "make" or "make install" in subsequent steps:
+   
    Error: zipimport.ZipImportError: can’t decompress data; zlib not available 
    
    >$sudo apt-get install libssl-dev
    
-   Note: Without libssl-dev installed, you will get the following error when you use pip3, for example, pip3 install numpy.
+   Note: Without libssl-dev installed, you may get the following error when you use pip3, for example, pip3 install numpy.
+   
    Error: pip is configured with locations that require TLS/SSL, however the ssl module in Python is not available.
+
+   >$sudo apt-get install libsqlite3-dev
+   
+   Note: Without libsqlite3-dev installed, you may get the following error when you run "jupyter noteboke" in your terminal once you have "python3 -m pip install jupyter".
+  
+   Error: from pysqlite2 import dbapi2 as sqlite3 ModuleNotFoundError: No module named 'pysqlite2'
 
 
 4. Configure, make and install:
