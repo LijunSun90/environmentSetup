@@ -2,15 +2,15 @@
 
 ## Print system information or distribution-specific information
 
-   Print distribution-specific information
+1. Print distribution-specific information
    
    >$ lsb_release -a
 
-   Print system information
+2. Print system information
    
    >$ uname -a
    
-   Get the bits of your system
+3. Get the bits of your system
    
    >$ getconf LONG_BIT
 
