@@ -68,3 +68,8 @@ Then restart:
 
 and connect again.
 
+5) Enable ssh service when the system start each time:
+
+   >$ sudo systemctl enable ssh
+   
+
