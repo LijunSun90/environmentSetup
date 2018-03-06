@@ -73,3 +73,10 @@ and connect again.
    >$ sudo systemctl enable ssh
    
 
+If you encounter the error "sudo: systemctl: command not found", you can use the following command instead:
+
+   >$ update-rc.d ssh enable
+ 
+ Reference: [https://stackoverflow.com/questions/37438630/how-to-use-systemctl-in-ubuntu-14-04]
+
+Link to Ubuntu documentation: https://wiki.ubuntu.com/SystemdForUpstartUsers
