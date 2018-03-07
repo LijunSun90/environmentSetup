@@ -6,7 +6,7 @@
 **0. Prerequirst:**
    
    First, you need to make sure you can login in your burger through ssh when the network is ok.
-   Please refer to [Link](https://github.com/LijunSun90/environmentSetupForLinux/blob/master/sshUsage.md) for detail.
+   Please refer [here](https://github.com/LijunSun90/environmentSetupForLinux/blob/master/sshUsage.md) for detail.
    
 **1. Set your wifi network**
 
