@@ -33,10 +33,11 @@
    
    >$ cd Python-3.6.4/
    
-   >$ ./configure
+   Note: If you don't configure with the option "--with-bz2", you may get the follwoing error when you "import matplotlib":
+   ModuleNotFoundError: No module named '_bz2'
    
-   >$ ./configure --enable-optimizations
-   
+   >$ ./configure --with-bz2
+    
    >$ make
    
    >$ sudo make install
