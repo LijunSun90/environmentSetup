@@ -24,3 +24,5 @@ on your computer, which is exactly what we want. Then you'll go the page https:/
 
 [1] Opencv: open-source comuter vision library. [Online] http://www.willowgarage.com/pages/software/opencv
 
+[2] CMake Tutorial. [Online] https://cmake.org/cmake-tutorial/
+
