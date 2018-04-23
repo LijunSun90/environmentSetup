@@ -101,7 +101,7 @@ xserver-command=X -dpi 80
 
 [    27.222] (++) NOUVEAU(0): DPI set to (80, 80)
 
-* Run "Startup Applications", press "Add" button, name it "Fix DPI" and set the command xrandr --dpi 90 in the field. 
+* Run "Startup Applications", press "Add" button, name it "Fix DPI" and set the command xrandr --dpi 80 in the field. 
 Save the changes and re-login. 
 
 * Test
@@ -109,6 +109,33 @@ Save the changes and re-login.
 > $ xdpyinfo | grep dots
 
 resolution:    80x80 dots per inch
+
+**Optional:**
+
+* In GNOME3 DPI setting is hardcoded to 96 and cannot be changed directly, but the text can be scaled instead. 
+Calculate the desired multiplier: desired_DPI / 96 (in my case 80/96 = .83333333333333333333). Now run the command (or use dconf if you prefer):
+
+> $ gsettings set org.gnome.desktop.interface text-scaling-factor .83333333333333333333
+
+Changes will be applied at once. 
+
+> $ xrdb -query | grep dpi 
+
+Xft.dpi:	80
+
+Scale back if you like:
+
+> $ gsettings set org.gnome.desktop.interface text-scaling-factor 1
+
+Test 
+
+> $ xrdb -query | grep dpi 
+
+Xft.dpi:	96
+
+
+
+
 
 
 
