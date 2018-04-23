@@ -83,6 +83,12 @@ Y: 1080 / 13.58267716535433070866 dpi = 79.51304347826086956522 dpi ~ 80 dpi
 
 So my real dpi is 80.
 
+* **Important**: an automatic real DPI shell script
+
+The real DPI can be obtained automatically by the follwoing shell script.
+
+[getRealDPI.sh](https://github.com/LijunSun90/environmentSetupForLinux/blob/master/getRealDPI.sh)
+
 
 ## 5. Start fixing DPI:
 
