@@ -18,7 +18,7 @@
    
    >$ sudo dpkg -r deb_software_name
 
-* Determine the size of an image
+* Determine the size of an image in pixels
    
    >$ identify chessboard.jpg 
    
