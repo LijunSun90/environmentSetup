@@ -84,7 +84,7 @@ Y: 1080 / 13.58267716535433070866 dpi = 79.51304347826086956522 dpi ~ 80 dpi
 So my real dpi is 80.
 
 
-## Start fixing DPI:
+## 5. Start fixing DPI:
 
 * Create lightdm.conf manually and put it into /etc/lightdm/lightdm.conf.d/ 
 
@@ -135,7 +135,7 @@ Xft.dpi:	96
 
 
 
-## 5. References:
+## 6. References:
 [1] https://askubuntu.com/questions/197828/how-to-find-and-change-the-screen-dpi
 
 [2] Wikipedia: Pixel density. [Online] https://en.wikipedia.org/wiki/Pixel_density
