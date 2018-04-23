@@ -33,7 +33,7 @@ For example, a DIP is defined as 1/96th of a logical inch.
 In Direct2D, all drawing operations are specified in DIPs and then scaled to the current DPI setting
 [[4]](https://msdn.microsoft.com/en-us/library/windows/desktop/ff684173(v=vs.85).aspx).
 
-Thus, the effort of this material is to get the real physical size f a pixel. That is get the **actual real physical DPI** 
+Thus, the effort of this material is to **get** and **fix** the real physical size f a pixel. That is, to get the **actual real physical DPI** 
 in the sense of one physical inch, rather than a logical inch.
 
 ## 2. My envrionment
