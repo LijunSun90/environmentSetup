@@ -115,6 +115,9 @@ resolution:    80x80 dots per inch
 
 ## References:
 [1] https://askubuntu.com/questions/197828/how-to-find-and-change-the-screen-dpi
+
 [2] Wikipedia: Pixel density. [Online] https://en.wikipedia.org/wiki/Pixel_density
+
 [3] Wikipedia: Dots per inch. [Online] https://en.wikipedia.org/wiki/Dots_per_inch
+
 [4] Microsoft: DPI and Device-Independent Pixels. [Online] https://msdn.microsoft.com/en-us/library/windows/desktop/ff684173(v=vs.85).aspx
