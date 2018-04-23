@@ -2,7 +2,7 @@
 Note: Most of the following contents are from [[1]](https://askubuntu.com/questions/197828/how-to-find-and-change-the-screen-dpi)
 with according modifications in terms of my environment and extra information added.
 
-## What's PPI, PPCM, DPI, and DIPs [[2, 3, 4]](https://en.wikipedia.org/wiki/Pixel_density)?
+## 1. What's PPI, PPCM, DPI, and DIPs [[2, 3, 4]](https://en.wikipedia.org/wiki/Pixel_density)?
 
 Pixels per inch (**PPI**) or pixels per centimeter (**PPCM**) are measurements of the pixel density (resolution) of monitors. 
 It is related to the size of the display in inches and the total number of pixels in the horizontal and vertical directions. 
@@ -36,14 +36,14 @@ In Direct2D, all drawing operations are specified in DIPs and then scaled to the
 Thus, the effort of this material is to get the real physical size f a pixel. That is get the **actual real physical DPI** 
 in the sense of one physical inch, rather than a logical inch.
 
-## My envrionment
+## 2. My envrionment
 
 * Ubuntu 16.04
 
 * Display monitor: Samsung 28''
 
 
-## Hardcoded DPI!
+## 3. Hardcoded DPI!
 
 * My starting settings:
 
@@ -63,7 +63,7 @@ In 16.04 the outputs of all these 3 commands were consistent and were equal to 9
 which is **hardcoded** and far from the real DPI value.
 
 
-## Now compute the optimal DPI for the current monitor
+## 4. Now compute the optimal DPI for the current monitor
 
 * Actual size of the screen can be found by
 
@@ -135,12 +135,7 @@ Xft.dpi:	96
 
 
 
-
-
-
-
-
-## References:
+## 5. References:
 [1] https://askubuntu.com/questions/197828/how-to-find-and-change-the-screen-dpi
 
 [2] Wikipedia: Pixel density. [Online] https://en.wikipedia.org/wiki/Pixel_density
