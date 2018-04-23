@@ -97,13 +97,18 @@ xserver-command=X -dpi 80
 
 * Test
 
-> $ xrdb -query | grep DPI /var/log/Xorg.0.log 
+> $ xrdb -query | grep DPI /var/log/Xorg.0.log
+
+[    27.222] (++) NOUVEAU(0): DPI set to (80, 80)
 
 * Run "Startup Applications", press "Add" button, name it "Fix DPI" and set the command xrandr --dpi 90 in the field. 
 Save the changes and re-login. 
 
 * Test
+
 > $ xdpyinfo | grep dots
+
+resolution:    80x80 dots per inch
 
 
 
