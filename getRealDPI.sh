@@ -1,4 +1,3 @@
-
 # Get the real physical DPI (dots per inch) for the currrent monitor
 # Author: Lijun Sun
 # Date: 2018.04.13
