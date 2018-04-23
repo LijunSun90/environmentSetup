@@ -18,3 +18,12 @@
    
    >$ sudo dpkg -r deb_software_name
 
+* Determine the size of an image
+   
+   >$ identify chessboard.jpg 
+   
+   or
+   
+   >$ identify -verbose chessboard.jpg 
+   
+   
