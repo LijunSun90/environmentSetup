@@ -1,3 +1,4 @@
+
 # Get the real physical DPI (dots per inch) for the currrent monitor
 # Author: Lijun Sun
 # Date: 2018.04.13
@@ -26,7 +27,7 @@ physicalY_inch=$(echo "$physicalY_mm/25.4" | bc -l)
 dpiX=$(echo "$resolutionX/$physicalX_inch" | bc -l)
 dpiY=$(echo "$resolutionX/$physicalX_inch" | bc -l)
 
-# 
+# Round the result to the nearest integer.
 echo "The REAL ACTUAL DPI (dots per inch) of the current monitor is: 
 
     $(printf '%.*f\n' 0 $dpiX) pixels/inch x $(printf '%.*f\n' 0 $dpiY) pixels/inch \n\n"
