@@ -18,6 +18,12 @@ on your computer, which is exactly what we want. Then you'll go the page https:/
 
 * Step 7: Do exactly what the page told you.
 
+* Note: For OpenCV 4.0-pre with opencv_contrib, the cmake command shold be
+
+> cmake -DCMAKE_BUILD_TYPE=Release -DOPENCV_EXTRA_MODULES_PATH=<opencv_contrib>/modules -DCMAKE_CXX_FLAGS="-std=c++11" -DCMAKE_INSTALL_PREFIX=/usr/local ..
+
+since OpenCV 4.x+ requires enabled C++11 support.
+
 * Step 8: To test and run your first opencv codes, and further learn to use opencv with gcc and CMake, which is the esiest way to sue opencv in your codes, you can dispaly an image following the page https://docs.opencv.org/3.4.1/df/d65/tutorial_table_of_content_introduction.html
 
 ## Reference: 
