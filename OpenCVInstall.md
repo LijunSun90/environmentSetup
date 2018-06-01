@@ -18,7 +18,7 @@ on your computer, which is exactly what we want. Then you'll go the page https:/
 
 * Step 7: Do exactly what the page told you.
 
-* Note: If you want to compile with opencv_contrib, the cmake command shold be
+* Step 8: If you want to compile with opencv_contrib, the cmake command shold be
 
 > cmake -DCMAKE_BUILD_TYPE=Release -DOPENCV_EXTRA_MODULES_PATH=<opencv_contrib>/modules -DCMAKE_CXX_FLAGS="-std=c++11" -DCMAKE_INSTALL_PREFIX=/usr/local ..
 
@@ -26,9 +26,19 @@ on your computer, which is exactly what we want. Then you'll go the page https:/
 
 **Important:** Downlaod the opencv_contrib with the same version from github.
 
-* Step 8: To test and run your first opencv codes, and further learn to use opencv with gcc and CMake, which is the esiest way to sue opencv in your codes, you can dispaly an image following the page https://docs.opencv.org/3.4.1/df/d65/tutorial_table_of_content_introduction.html
+**Note:** The module sfm of open_contrib is depend on Eigen. If you compile Eigen from source code and install it in /usr/local/include/eigen3, you may get the following error:
 
-* Step 9: Check the opencv version in your system.
+> fatal error: Eigen/Core: No such file or directory
+
+when you run the codes with #include <opencv2/sfm.hpp>. Actually, you can solve this problem with the following actions:
+
+> cd /usr/local/include
+
+> sudo ln -sf eigen3/Eigen Eigen
+
+* Step 9: To test and run your first opencv codes, and further learn to use opencv with gcc and CMake, which is the esiest way to sue opencv in your codes, you can dispaly an image following the page https://docs.opencv.org/3.4.1/df/d65/tutorial_table_of_content_introduction.html
+
+* Step 10: Check the opencv version in your system.
 
 > pkg-config --modversion opencv
 
