@@ -36,6 +36,8 @@ on your computer, which is exactly what we want. Then you'll go the page https:/
 
   > sudo ln -sf eigen3/Eigen Eigen
   
+  > sudo ln -sf eigen3/unsupported unsupported
+  
   **Problem:** If you encounter the error related about protobuf, since it may be caused by the version comfilacated, you can solve it with anouther option for cmake, i.e.,  -DWITH_PROTOBUF=OFF
   
   > cmake -DCMAKE_BUILD_TYPE=Release -DOPENCV_EXTRA_MODULES_PATH=<opencv_contrib>/modules -DBUILD_EXAMPLES=ON -DCMAKE_CXX_FLAGS="-std=c++11" -DWITH_PROTOBUF=OFF -DCMAKE_INSTALL_PREFIX=/usr/local ..
