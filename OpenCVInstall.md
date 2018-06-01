@@ -38,9 +38,34 @@ on your computer, which is exactly what we want. Then you'll go the page https:/
   
   > sudo ln -sf eigen3/unsupported unsupported
   
-  **Problem:** If you encounter the error related about protobuf, since it may be caused by the version comfilacated, you can solve it with anouther option for cmake, i.e.,  -DWITH_PROTOBUF=OFF
+  **Problem:** If you encounter the error related about protobuf, since it may be caused by the version comflicated, the solution of adding an cmake parameter  -DWITH_PROTOBUF=OFF may be ineffective, that is, even if you do the following action:
   
   > cmake -DCMAKE_BUILD_TYPE=Release -DOPENCV_EXTRA_MODULES_PATH=<opencv_contrib>/modules -DBUILD_EXAMPLES=ON -DCMAKE_CXX_FLAGS="-std=c++11" -DWITH_PROTOBUF=OFF -DCMAKE_INSTALL_PREFIX=/usr/local ..
+
+you may still encounter a failure during make. However, a solution that may be definitely effective is to reinstall the libprotobuf by the following commands:
+
+  > sudo apt-get remove libprotobuf-dev
+
+  > sudo apt-get remove protobuf-compiler
+
+  > sudo apt-get remove python-protobuf
+
+  > sudo rm -rf /usr/local/bin/protoc
+
+  > sudo rm -rf /usr/bin/protoc
+
+  > sudo rm -rf /usr/local/include/google
+
+  > sudo rm -rf /usr/local/include/protobuf*
+
+  > sudo rm -rf /usr/include/google
+
+  > sudo rm -rf /usr/include/protobuf*
+
+  > sudo rm -rf /usr/local/lib/libproto*
+
+  > sudo rm -rf /usr/lib/libproto*
+
 
 * Step 9: To test and run your first opencv codes, and further learn to use opencv with gcc and CMake, which is the esiest way to sue opencv in your codes, you can dispaly an image following the page https://docs.opencv.org/3.4.1/df/d65/tutorial_table_of_content_introduction.html
 
