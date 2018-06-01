@@ -20,7 +20,7 @@ on your computer, which is exactly what we want. Then you'll go the page https:/
 
 * Step 8: If you want to compile with opencv_contrib, the cmake command shold be
 
-  > cmake -DCMAKE_BUILD_TYPE=Release -DOPENCV_EXTRA_MODULES_PATH=<opencv_contrib>/modules -DCMAKE_CXX_FLAGS="-std=c++11" -DCMAKE_INSTALL_PREFIX=/usr/local ..
+  > cmake -DCMAKE_BUILD_TYPE=Release -DOPENCV_EXTRA_MODULES_PATH=<opencv_contrib>/modules -DBUILD_EXAMPLES=ON -DCMAKE_CXX_FLAGS="-std=c++11" -DCMAKE_INSTALL_PREFIX=/usr/local ..
 
   **Important!!**  Remember to clear all the cmake cache files (remove the whole build folder) before running cmake again, in case part of the opencv_contrib modules cannot be installed.
 
