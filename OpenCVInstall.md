@@ -40,7 +40,7 @@ on your computer, which is exactly what we want. Then you'll go the page https:/
 
 * Step 10: Check the opencv version in your system.
 
-> pkg-config --modversion opencv
+  > pkg-config --modversion opencv
 
 ## Reference: 
 
