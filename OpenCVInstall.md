@@ -65,6 +65,12 @@ on your computer, which is exactly what we want. Then you'll go the page https:/
     > sudo rm -rf /usr/local/lib/libproto*
 
     > sudo rm -rf /usr/lib/libproto*
+    
+    > sudo apt-get update
+    
+    > sudo ldconfig
+    
+    > sudo apt-get install libprotobuf* protobuf-compiler python-protobuf
 
 
 * Step 9: To test and run your first opencv codes, and further learn to use opencv with gcc and CMake, which is the esiest way to sue opencv in your codes, you can dispaly an image following the page https://docs.opencv.org/3.4.1/df/d65/tutorial_table_of_content_introduction.html
