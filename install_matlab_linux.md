@@ -28,6 +28,6 @@ When the installation is finished,
 
 > sudo umount ~/softwares/matlab/meida
  
- The same command is performed twice since there are two dvd mount on the same path.
+ The same command is performed twice since there are two dvd mounted on the same path.
  
  
