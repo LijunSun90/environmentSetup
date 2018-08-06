@@ -40,6 +40,8 @@
   
   > Timeout: 600
   
+  > Auto connect on application start
+  
  * Connect (The status shows: connected)
  
  * Test
